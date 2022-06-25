@@ -1,0 +1,10 @@
+[Unit]
+Description=#### Auto connect my bluetooth keyboard #####
+After=bluetooth.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/anderson/files/scripts/keyboard/auto_connect.sh
+
+[Install]
+WantedBy=default.target

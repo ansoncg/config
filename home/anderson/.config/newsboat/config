@@ -1,0 +1,31 @@
+# unbind keys
+# unbind-key ENTER
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# bind keys - vim style
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+bind-key d pagedown
+bind-key u pageup
+
+auto-reload yes
+# reload-time 15
+reload-threads 8
+
+save-path "/home/andersoncg/files/notes/rss_saves"
+
+browser "firefox 2>/dev/null"
+# browser qutebrowser
+macro m set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser "firefox 2>/dev/null"
+# macro s set browser  ; open-in-browser ; set browser firefox
+
+color info blue black
+color listfocus magenta default
+color listnormal_unread red default
+color listfocus_unread yellow default
+color listnormal green default

@@ -1,0 +1,127 @@
+// --------------------- VARIABLES ------------------------
+
+= USER_NAME anderson
+
+// --------------------- PACMAN ------------------------
+
+@ UPDATE PACMAN
+- run
+
+@ INSTALL PACMAN
+- reflector
+
+@ MIRROR PACMAN
+- run
+
+@ INSTALL PACMAN
+
+# Base
+- base-devel
+
+# Services
+- mpd networkmanager pulseaudio
+
+# Desktop
+- dunst flameshot i3-wm i3lock jre11-openjdk mpv nitrogen picom polybar rofi sxiv xorg-server xorg-xbacklight zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps
+
+# Xorg tools
+- xclip xdotool xorg-xev xorg-xinit xorg-xinput xorg-xmodmap xorg-xrandr xorg-xrdb
+
+# Fonts
+- awesome-terminal-fonts gnu-free-fonts
+
+# Cli tools
+- android-tools bat borg fd firejail fish fzf git highlight imagemagick keepassxc lshw mlocate mpc neofetch odt2txt p7zip pacman-contrib pacutils pdfgrep scrcpy socat tealdeer trash-cli udisks2 unzip xdg-user-dirs xdg-utils yt-dlp zip
+
+# Programming tools
+- clang nodejs npm python-pip r valgrind
+
+# Tui tools
+- htop kitty neovim pulsemixer ranger tmux vim
+
+# Gui tools
+- firefox libreoffice-fresh gucharmap keynav arandr lxappearance qt5ct kvantum unclutter pavucontrol paprefs obs-studio peek gimp pymol xcolor
+
+# Gaming
+- streamlink
+
+# Depedencies
+- python-pynvim perl-image-exiftool texlive-core
+
+
+// --------------------- MAKEPKG ------------------------
+
+@ INSTALL MAKEPKG
+- paru-bin
+
+// --------------------- PARU -----------------------
+
+@ INSTALL PARU
+
+# Fonts
+- nerd-fonts-fira-code ttf-symbola
+
+# Cli tools
+- buku downgrade pandoc-bin shellcheck-bin sndcpy timeshift update-grub ventoy-bin vim-plug
+
+# Tui tools
+- visidata sysz
+
+# Gui tools
+- dragon-drop
+
+// --------------------- NPM ------------------------
+
+@ INSTALL NPM
+
+# Some depedencies
+- neovim
+
+// --------------------- Get files ------------------------
+
+@ DOWNLOAD
+
+# Download Dracula and Vimix cursor
+- https://github.com/dracula/gtk/archive/master.zip > $HOME/etc/themes/gtk/dracula.zip
+- https://github.com/dracula/gtk/files/5214870/Dracula.zip > $HOME/etc/themes/icons/dracula.zip
+- https://github.com/vinceliuice/Vimix-cursors/archive/refs/heads/master.zip > $HOME/etc/themes/cursors/vimix.zip
+
+// --------------------- Extract files ------------------------
+
+@ EXTRACT
+
+# Extract themes on correct directories
+- $HOME/etc/themes/gtk/dracula.zip > $HOME/etc/themes/gtk
+- $HOME/etc/themes/icons/dracula.zip > $HOME/etc/themes/icons
+- $HOME/etc/themes/cursors/vimix.zip > $HOME/etc/themes/cursors
+
+// --------------------- Create symlinks ------------------------
+
+@ LINK
+
+# Create symlinks for themes
+- $HOME/etc/themes/gtk/gtk-master > $HOME/.themes/Dracula
+- $HOME/etc/themes/icons/Dracula > $HOME/.local/share/icons/Dracula
+- $HOME/etc/themes/cursors/Vimix-cursors-master/dist > $HOME/.local/share/icons/Vimix
+
+// --------------------- Copy files ------------------------
+
+@ COPY SYSTEM
+-
+
+@ COPY USER
+// $HOME/config/home/anderson > $HOME
+// ...
+
+
+// --------------------- Enable Services ------------------------
+
+@ SERVICE SYSTEM
+
+# Enable system services
+- NetworkManager.service
+
+@ SERVICE USER
+
+# Enable user services
+- mpd.service

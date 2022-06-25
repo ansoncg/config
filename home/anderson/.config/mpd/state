@@ -1,0 +1,22 @@
+sw_volume: 100
+audio_device_state:1:pulse audio
+state: play
+current: 0
+time: 15.671000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+song_begin: https://manifest.googlevideo.com/api/manifest/hls_playlist/expire/1656202439/ei/Z1C3YsiyG-jU1sQPiaKTmAY/ip/177.34.168.128/id/5qap5aO4i9A.2/itag/96/source/yt_live_broadcast/requiressl/yes/ratebypass/yes/live/1/sgoap/gir%3Dyes%3Bitag%3D140/sgovp/gir%3Dyes%3Bitag%3D137/hls_chunk_host/rr2---sn-oxunxg8pjvn-j29ss.googlevideo.com/playlist_duration/30/manifest_duration/30/vprv/1/playlist_type/DVR/initcwndbps/843750/mh/30/mm/44/mn/sn-oxunxg8pjvn-j29ss/ms/lva/mv/m/mvi/2/pl/25/dover/11/pacing/0/keepalive/yes/fexp/24001373,24007246/mt/1656180522/sparams/expire,ei,ip,id,itag,source,requiressl,ratebypass,live,sgoap,sgovp,playlist_duration,manifest_duration,vprv,playlist_type/sig/AOq0QJ8wRgIhAJwxGgHnonffhYONCKQWAdV0ky1VK46wLuHc0rWl-IOWAiEAlhmX1zoqpBiC86UEFtX8tsTT1cGzZ1Bp85m7NmGJBRY%3D/lsparams/hls_chunk_host,initcwndbps,mh,mm,mn,ms,mv,mvi,pl/lsig/AG3C_xAwRQIhAPFfWBpge4dtU4GV5rCSAJVOn5CGTK1yZFwATkbzpCgIAiAHE48zR5620gUcS46H-IrKivBVPilUMFOomDluMLA0zA%3D%3D/playlist/index.m3u8
+song_end
+song_begin: https://manifest.googlevideo.com/api/manifest/hls_playlist/expire/1655925748/ei/lBezYvr8CYTf1sQP_NCoyAc/ip/177.34.168.128/id/5qap5aO4i9A.2/itag/96/source/yt_live_broadcast/requiressl/yes/ratebypass/yes/live/1/sgoap/gir%3Dyes%3Bitag%3D140/sgovp/gir%3Dyes%3Bitag%3D137/hls_chunk_host/rr2---sn-oxunxg8pjvn-j29ss.googlevideo.com/playlist_duration/30/manifest_duration/30/vprv/1/playlist_type/DVR/initcwndbps/943750/mh/30/mm/44/mn/sn-oxunxg8pjvn-j29ss/ms/lva/mv/m/mvi/2/pl/25/dover/11/pacing/0/keepalive/yes/fexp/24001373,24007246/mt/1655903791/sparams/expire,ei,ip,id,itag,source,requiressl,ratebypass,live,sgoap,sgovp,playlist_duration,manifest_duration,vprv,playlist_type/sig/AOq0QJ8wRQIgTNPjEcUq7rYGVqFQVQvGg4iqpuBy36Jwr0JKT5u064wCIQDb2wDbMqPrHuZFXk8sdRweK2GTGyHU4lshtaFy2QkF_Q%3D%3D/lsparams/hls_chunk_host,initcwndbps,mh,mm,mn,ms,mv,mvi,pl/lsig/AG3C_xAwRAIgOwZcxi2eijruSrazcjf0Xxz_NBrRcaZMXxv_lRGuNe4CIFOSSmnqDKOdvrwHAiFEbrd0YSvBYZ-oJP27DzrDdYI4/playlist/index.m3u8
+song_end
+song_begin: https://manifest.googlevideo.com/api/manifest/hls_playlist/expire/1656109367/ei/1-S1Ysn2FKSA-LAPm_OI6A4/ip/177.34.168.128/id/5qap5aO4i9A.2/itag/96/source/yt_live_broadcast/requiressl/yes/ratebypass/yes/live/1/sgoap/gir%3Dyes%3Bitag%3D140/sgovp/gir%3Dyes%3Bitag%3D137/hls_chunk_host/rr2---sn-oxunxg8pjvn-j29ss.googlevideo.com/playlist_duration/30/manifest_duration/30/vprv/1/playlist_type/DVR/initcwndbps/981250/mh/30/mm/44/mn/sn-oxunxg8pjvn-j29ss/ms/lva/mv/m/mvi/2/pl/25/dover/11/pacing/0/keepalive/yes/fexp/24001373,24007246/mt/1656087410/sparams/expire,ei,ip,id,itag,source,requiressl,ratebypass,live,sgoap,sgovp,playlist_duration,manifest_duration,vprv,playlist_type/sig/AOq0QJ8wRQIhANec4qSOqWGmZKy6nzvqTcVs2ad2r140kMIk0BRlIeCMAiApIHBhefAZGnbixCgFFYFn4ASb7SYyVu95lFI_CNx2Ig%3D%3D/lsparams/hls_chunk_host,initcwndbps,mh,mm,mn,ms,mv,mvi,pl/lsig/AG3C_xAwRQIhAMagffkjUxdKIlKfjNQ_St30TpC5am33cUQ9HyxpBGm9AiBZCh1a0M4ztSkU3sjhVNp_ndOimzEZTcwJRvsJtr4hrg%3D%3D/playlist/index.m3u8
+song_end
+3:musica/Tarde Livre.mp3
+4:Majula.mp3
+playlist_end

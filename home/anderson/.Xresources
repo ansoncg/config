@@ -1,0 +1,5 @@
+/* Sxvi colors */
+Sxiv.background: #282a36
+Sxiv.foreground: #6272a4
+Sxiv.font: FiraCode Nerd Font Mono
+/* Sxiv.foreground: #bd93f9 */

@@ -1,0 +1,476 @@
+# Ansible playbook for [laptop Asus X541UAK]
+# - CPU: Intel i3 6006U 
+# - GPU: Intel Skylake GT2 - HD Graphics 520
+# - RAM: 4GB ddr4
+# - STORAGE: 1TB HDD
+
+# sudo pacman -S ansible git
+# ansible-galaxy collection install kewlfft.aur
+# git clone https://aur.archlinux.org/paru
+# makepkg -si
+# sudo ansible-galaxy collection install kewlfft.aur -p /usr/share/ansible/collections
+# sudo ansible-pull -U https://github.com/ansoncg/config -vv | tee ansible_log.txt
+
+- hosts: localhost
+  connection: local
+  become: true
+
+# ------------- Official packages -------------------------
+
+  tasks:
+
+    - name: pacman -Syu
+      community.general.pacman:
+        update_cache: yes
+        upgrade: yes
+    
+    - name: Install services packages
+      package:
+        name:
+          - tlp
+          - wpa_supplicant
+          - networkmanager
+          - bluez
+          - pulseaudio
+          - cronie
+          - ufw
+          - mpd
+
+    - name: Install desktop packages
+      package:
+        name:
+          - xf86-video-intel
+          - intel-media-driver
+          - intel-gpu-tools
+          - vulkan-intel
+          - lib32-vulkan-intel
+          - xorg-server
+          - i3-wm
+          - i3lock
+          - polybar
+          - picom
+          - rofi
+          - sxiv
+          - mpv
+          - dunst
+          - nitrogen
+          - zathura
+          - zathura-ps
+          - zathura-pdf-mupdf
+          - zathura-djvu
+          - zathura-cb
+          - pulseaudio-bluetooth
+          - xorg-xbacklight
+          - flameshot
+          - slop
+          - jre11-openjdk
+
+    - name: Install xorg tools
+      package:
+        name:
+          - xorg-xinit
+          - xorg-xrandr
+          - xorg-xev
+          - xorg-xinput
+          - xorg-xmodmap
+          - xorg-xrdb
+          - xdotool
+          - xclip
+
+    - name: Install fonts
+      package:
+        name:
+          - gnu-free-fonts
+          - awesome-terminal-fonts
+
+    - name: Install cli tools
+      package:
+        name:
+          - task
+          - fish
+          - firejail
+          - bluez-utils
+          - pacman-contrib
+          - pacutils
+          - mlocate
+          - fd
+          - fzf
+          - ripgrep
+          - pdfgrep
+          - tealdeer
+          - git
+          - bat
+          - highlight
+          - yt-dlp
+          - xdg-utils
+          - xdg-user-dirs
+          - borg
+          - p7zip
+          - zip
+          - unzip
+          - lshw
+          - keepassxc
+          - neofetch
+          - reflector
+          - trash-cli
+          - udisks2
+          - libva-utils
+          - imagemagick
+          - exiftool
+          - android-tools
+          - scrpy
+          - socat
+          - wine
+          - odt2txt
+          - vulkan-tools
+          - mpc
+
+    - name: Install programming tools
+      package:
+        name:
+          - python-pip
+          - nodejs
+          - npm
+          - r
+          - clang
+          - valgrind
+          # - rust
+          # - julia
+          # - cppcheck
+
+    - name: Install tui tools
+      package:
+        name:
+          - kitty
+          - ranger
+          - newsboat
+          - tmux
+          - vim
+          - neovim
+          - taskwarrior-tui
+          - pulsemixer
+          - htop
+
+    - name: Install gui tools
+      package:
+        name:
+          - firefox
+          - libreoffice-fresh
+          - virtualbox
+          - gucharmap
+          - keynav
+          - arandr
+          - lxappearance
+          - qt5ct
+          - kvantum
+          - unclutter
+          - pavucontrol
+          - paprefs
+          - obs-studio
+          - peek
+          - gimp
+          - pymol
+          - xcolor
+          # - telegram-desktop
+          # - discord
+          # - krita
+          # - inkscape
+          # - kdenlive
+          # - blender
+
+    - name: Install gaming packages
+      package:
+        name:
+          - streamlink
+          - piper
+          - solaar
+          - steam
+          - joyutils
+          # - lutris
+          # - pcsx2
+
+    - name: Install opt depedencies
+      package:
+        name:
+          - texlive-core
+          - python-pynvim
+          - v4l2loopback-dkms
+
+    - name: Install npm packages
+      community.general.npm:
+        name: neovim
+        global: yes
+
+# ------------- AUR -------------------------
+
+    - name: Create the `aur_builder` user
+      become: yes
+      ansible.builtin.user:
+        name: aur_builder
+        create_home: yes
+        group: wheel
+
+    - name: Allow the `aur_builder` user to run `sudo pacman` without a password
+      become: yes
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/11-install-aur_builder
+        line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+        create: yes
+        validate: 'visudo -cf %s'
+
+    - name: Install paru
+      kewlfft.aur.aur:
+        name: paru
+        use: makepkg
+        state: present
+      become: yes
+      become_user: aur_builder
+
+    - name: Install aur services packages
+      kewlfft.aur.aur:
+        use: paru
+        name:
+          - zram-swap-git
+        state: present
+      become: yes
+      become_user: aur_builder
+
+    - name: Install aur fonts
+      kewlfft.aur.aur:
+        use: paru
+        name:
+          - ttf-symbola
+          - nerd-fonts-fira-code
+        state: present
+      become: yes
+      become_user: aur_builder
+
+    - name: Install aur cli tools
+      kewlfft.aur.aur:
+        use: paru
+        name:
+          - pandoc-bin
+          - ventoy-bin
+          - shellcheck-bin
+          - timeshift
+          - tmsu-bin
+          - vim-plug
+          - update-grub
+          - downgrade
+          - sndcpy
+          - buku
+        state: present
+      become: yes
+      become_user: aur_builder
+
+    - name: Install aur tui tools
+      kewlfft.aur.aur:
+        use: paru
+        name:
+          - visidata
+          - sysz
+        state: present
+      become: yes
+      become_user: aur_builder
+
+    - name: Install aur gui tools
+      kewlfft.aur.aur:
+        use: paru
+        name:
+          - dragon-drop
+          - droidcam
+          # - ripcord
+        state: present
+      become: yes
+      become_user: aur_builder
+
+    - name: Install aur gaming packages
+      kewlfft.aur.aur:
+        use: paru
+        name:
+          - chatterino2-appimage
+          - duckstation-git
+          - melonds
+          # - heroic-games-launcher-bin
+        state: present
+      become: yes
+      become_user: aur_builder
+
+# ------------- Config -------------------------
+
+    - name: Create config directories
+      file:
+        path: "/home/anderson/{{ item }}"
+        state: directory
+        owner: anderson
+      loop:
+        - .config/dunst
+        - .config/fish
+        - .config/gtk-3.0
+        - .config/htop
+        - .config/i3
+        - .config/keynav
+        - .config/kitty
+        - .config/mpv
+        - .config/newsboat
+        - .config/nvim
+        - .config/nvim/lua
+        - .config/picom
+        - .config/polybar
+        - .config/ranger
+        - .config/ranger/plugins
+        - .config/ranger/colorschemes
+        - .local/share/ranger
+        - .config/rofi
+        - .config/streamlink
+        - .config/zathura
+        - .local/share/icons
+        - .themes
+        - etc/themes/gtk
+        - etc/themes/icons
+        - etc/themes/cursors
+        - etc/wallpapers 
+        - etc/themes/firefox
+
+    - name: Download ranger icons plugin
+      git: 
+        repo: https://github.com/alexanderjeurissen/ranger_devicons 
+        dest: /home/anderson/.config/ranger/plugins/ranger_devicons
+      become: yes
+      become_user: anderson
+
+    - name: Download themes
+      get_url: 
+        url: "{{ item.url }}"
+        dest: "/home/anderson/{{ item.dest }}"
+        owner: anderson
+      loop:
+        - { url: https://github.com/dracula/gtk/archive/master.zip, dest: etc/themes/gtk/dracula.zip }
+        - { url: https://github.com/dracula/gtk/files/5214870/Dracula.zip, dest: etc/themes/icons/dracula.zip }
+        - { url: https://github.com/vinceliuice/Vimix-cursors/archive/refs/heads/master.zip, dest: etc/themes/cursors/vimix.zip }
+        - { url: https://github.com/aynp/dracula-wallpapers/archive/refs/heads/main.zip, dest: etc/wallpapers/dracula.zip }
+
+    - name: Extract themes
+      unarchive:
+        src: "/home/anderson/etc/{{ item.src }}"
+        dest: "/home/anderson/etc/{{ item.dest }}"
+        owner: anderson
+        remote_src: yes
+        list_files: yes
+      loop:
+        - { src: themes/gtk/dracula.zip, dest: themes/gtk }
+        - { src: themes/icons/dracula.zip, dest: themes/icons }
+        - { src: themes/cursors/vimix.zip, dest: themes/cursors }
+        - { src: wallpapers/dracula.zip, dest: wallpapers }
+      register: names
+
+    # - name: Debug 'names' varible
+    #   debug:
+    #     msg: "{{ names }}"
+
+    - name: Create themes symlinks
+      file:
+        src: "/home/anderson/etc/{{ item.src }}"
+        dest: "/home/anderson/{{ item.dest }}"
+        owner: anderson
+        state: link
+      loop:
+        - { src: "themes/gtk/{{ names.results[0].files[0] }}", dest: .themes/Dracula }
+        - { src: "themes/icons/{{ names.results[1].files[0] }}", dest: .local/share/icons/Dracula }
+        - { src: "themes/cursors/{{ names.results[2].files[0] }}dist", dest: .local/share/icons/Vimix }
+
+    - name: Copy config files
+      copy:
+        src: "{{ item.src }}"
+        dest: "/home/anderson/{{ item.dest }}"
+        owner: anderson
+      loop:
+        - { src: bash/bashrc, dest: .bashrc }
+        - { src: dunst/dunstrc, dest: .config/dunst/dunstrc }
+        - { src: firefox/userChrome.css, dest: etc/themes/firefox/userChrome.css }
+        - { src: fish, dest: .config }
+        - { src: gtk/settings.ini, dest: .config/gtk-3.0/settings.ini }
+        - { src: htop/htoprc, dest: .config/htop/htoprc }
+        - { src: i3/config, dest: .config/i3/config }
+        - { src: keynav/keynavrc, dest: .config/keynav/keynavrc }
+        - { src: kitty/kitty.conf, dest: .config/kitty/kitty.conf }
+        - { src: kitty/startup.conf, dest: .config/kitty/startup.conf }
+        - { src: kitty/dracula.conf, dest: .config/kitty/dracula.conf }
+        - { src: mpv/mpv.conf, dest: .config/mpv/mpv.conf }
+        - { src: newsboat/config, dest: .config/newsboat/config }
+        - { src: nvim/init.lua, dest: .config/nvim/lua/init.lua }
+        - { src: nvim/init.vim, dest: .config/nvim/init.vim}
+        - { src: picom/picom.conf, dest: .config/picom/picom.conf }
+        - { src: polybar/config.ini, dest: .config/polybar/config.ini }
+        - { src: polybar/launch.sh, dest: .config/polybar/launch.sh }
+        - { src: ranger/rc.conf, dest: .config/ranger/rc.conf }
+        - { src: ranger/rifle.conf, dest: .config/ranger/rifle.conf }
+        - { src: ranger/default.py, dest: .config/ranger/colorschemes/default.py }
+        - { src: rofi/config.rasi, dest: .config/rofi/config.rasi }
+        - { src: streamlink/config, dest: .config/streamlink/config }
+        - { src: taskwarrior/taskrc, dest: .taskrc }
+        - { src: x11/Xresources, dest: .Xresources }
+        - { src: zathura/zathurarc, dest: .config/zathura/zathurarc }
+          # mpv input.conf
+
+    # Create symlinks to root themes too -> /usr/share/icons and gtk2/gtk3
+
+    # - name: Set xorg settings
+    #   command:
+    #     cmd: /usr/bin/xrdb /home/anderson/.Xresources
+    #   become: yes
+    #   become_user: anderson
+
+# ------------- Services -------------------------
+
+    - name: Enable system services
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      loop:
+        - ufw
+        - bluetooth
+        - zram-swap
+        - NetworkManager
+        # - cronie
+        # - pulseaudio
+        # - tlp
+        
+    # Enable tlp only on laptops. Don't use it inside a VM.
+    
+# ------------- Notes -------------------------
+        
+    # On firefox:
+    # - userChrome.css goes in a directory with no fixed name -> .mozzila/firefox/*.default-release/chrome/userChrome.css
+    # - Set true on about:config -> toolkit.legacyUserProfileCustomizations.stylesheets / browser.compactmode.show
+    # - Get official dracula theme
+    # - Log and sync
+    # - Config youtube extension shortcuts
+    # - Enable DNS over HTTPS
+    # - Disable data collection
+
+    # On neovim:
+    # - PlugInstall
+    # - LSPInstallInfo -> install lsp
+    # - TSInstall all -> install treesitter parser for everything
+
+    # ufw enable / ufw default deny incoming
+    # run xrdb .Xresources after reboot
+    # run lxappearance to change gtk
+    # run qt5ct and kvantum to change qt theme
+    # run nitrogen -> nitrogen --set-zoom-fill current_wallpaper.png
+    # run borg 
+
+    # fix pci error -> pci=noaer on /etc/default/grub: GRUB_CMDLINE_LINUX_DEFAULT
+    # fix wifi issue -> rtl8723be.conf
+    # make my bin files and polybar scripts exec
+    # config touchpad
+    # turn on simultaneous output -> paprefs
+
+    # for droidcam / or use de obs plugin
+    # sudo modprobe v4l2loopback
+
+# ------------- End -------------------------
+#
+# vm:
+# virt-manager qemu libvirt edk2-ovmf dnsmasq dmidecode iptables-nft

@@ -1,0 +1,14 @@
+// --------------------- VARIABLES ------------------------
+
+= USER_NAME anderson
+
+// --------------------- TEST ------------------------
+
+# Test 1
+
+@ DOWNLOAD
+
+// https://github.com/dracula/gtk/archive/master.zip > $HOME/teste/master.zip
+
+@ COPY
+- $HOME/teste/master.zip > $HOME/test/master.zip

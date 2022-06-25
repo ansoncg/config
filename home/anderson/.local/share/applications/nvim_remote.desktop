@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Neovim Remote
+Exec=nvim --server /tmp/nvim.pipe --remote %f
+Categories=Other;
+NoDisplay=true
+MimeType=text/plain
+Terminal=false

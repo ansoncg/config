@@ -1,0 +1,72 @@
+// --------------------- BASE SYSTEM ------------------------
+
+@ SYSTEM_INSTALL
+
+# Base
+- base-devel
+
+# Services packages
+- bluez cronie mpd networkmanager pulseaudio ufw
+
+# Desktop packages
+- dunst flameshot i3-wm i3lock intel-gpu-tools intel-media-driver jre11-openjdk lib32-vulkan-intel mpv nitrogen picom polybar pulseaudio-bluetooth rofi sxiv vulkan-intel xf86-video-intel xorg-server xorg-xbacklight zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps
+
+# Xorg tools
+- xclip xdotool xorg-xev xorg-xinit xorg-xinput xorg-xmodmap xorg-xrandr xorg-xrdb
+
+# Fonts
+awesome-terminal-fonts gnu-free-fonts
+
+# Cli tools
+- android-tools bat bluez-utils borg fd firejail fish fzf git highlight imagemagick keepassxc libva-utils lshw mlocate mpc neofetch odt2txt p7zip pacman-contrib pacutils pdfgrep reflector ripgrep scrcpy socat tealdeer trash-cli udisks2 unzip vulkan-tools wine xdg-user-dirs xdg-utils yt-dlp zip
+
+# Programming tools
+- clang nodejs npm python-pip r valgrind
+// rust julia cppcheck
+
+# Tui tools
+- htop kitty neovim pulsemixer ranger tmux vim
+
+# Gui tools
+- arandr firefox gimp gucharmap keynav kvantum libreoffice-fresh lxappearance obs-studio paprefs pavucontrol peek pymol qt5ct unclutter virtualbox xcolor
+// telegram-desktop discord krita inkscape kdenlive blender
+
+# Gaming
+- joyutils piper solaar steam streamlink
+// lutris pcsx2
+
+# Ppt depedencies
+- python-pynvim perl-image-exiftool texlive-core v4l2loopback-dkms
+
+
+// --------------------- AUR ------------------------
+
+@ AUR_INSTALL
+
+# services packages
+- zram-swap-git
+
+# fonts
+- nerd-fonts-fira-code ttf-symbola
+
+# cli tools
+- buku downgrade pandoc-bin shellcheck-bin sndcpy timeshift tmsu-bin update-grub ventoy-bin vim-plug
+
+# tui tools
+- visidata sysz
+
+# gui tools
+- dragon-drop droidcam
+// ripcord
+
+# gaming packages
+- chatterino2-appimage duckstation-git melonds
+// heroic-games-launcher-bin
+
+
+// --------------------- NPM ------------------------
+
+@ NPM_INSTALL
+
+# Some depedencies
+- neovim
